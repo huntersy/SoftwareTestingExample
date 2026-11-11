@@ -1,0 +1,26 @@
+﻿# .NET build output
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# NUnit test results
+/TestResults/
+*.trx
+
+# Playwright reports and artifacts
+/playwright-report/
+/test-results/
+/playwright/.cache/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Operating system files
+.DS_Store
+Thumbs.db
