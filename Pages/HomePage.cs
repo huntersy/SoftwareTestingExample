@@ -38,22 +38,63 @@ public class HomePage
 
 
 
+
     public async Task NavigateAsync()
     {
-        // Navigate until the browser confirms that the response has committed.
-        await _page.GotoAsync(TestConfig.BaseUrl, new PageGotoOptions
-        {
-            WaitUntil = WaitUntilState.Commit,
-            Timeout = 30000
-        });
+        // Navigate until the server response commits.
+        var response = await _page.GotoAsync(
+            TestConfig.BaseUrl,
+            new PageGotoOptions
+            {
+                WaitUntil = WaitUntilState.Commit,
+                Timeout = 30000
+            }
+        );
 
-        // Wait until the homepage search box is visible and usable.
+        // Diagnostic information for GitHub Actions.
+        Console.WriteLine("========== HOMEPAGE DIAGNOSTICS ==========");
+
+        Console.WriteLine(
+            $"HTTP Response Status: {response?.Status}"
+        );
+
+        Console.WriteLine(
+            $"Final URL: {_page.Url}"
+        );
+
+        Console.WriteLine(
+            $"Page Title: {await _page.TitleAsync()}"
+        );
+
+        try
+        {
+            var bodyText = await _page.Locator("body").InnerTextAsync();
+
+            var preview = bodyText.Substring(
+                0,
+                Math.Min(bodyText.Length, 1500)
+            );
+
+            Console.WriteLine("Page Body Preview:");
+            Console.WriteLine(preview);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(
+                $"Unable to retrieve page body: {ex.Message}"
+            );
+        }
+
+        Console.WriteLine("==========================================");
+
+        // Wait for the homepage search box.
         await SearchBox.WaitForAsync(new()
         {
             State = WaitForSelectorState.Visible,
             Timeout = 30000
         });
     }
+
 
 
     // Retrieve homepage title
