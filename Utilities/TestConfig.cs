@@ -2,6 +2,7 @@ namespace SoftwareTestingExample.Utilities;
 
 public static class TestConfig
 {
-    public const string BaseUrl =
-        "https://practicesoftwaretesting.com/";
+    public static string BaseUrl =>
+        Environment.GetEnvironmentVariable("BASE_URL")
+        ?? "https://practicesoftwaretesting.com/";
 }
