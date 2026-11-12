@@ -1,5 +1,6 @@
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
+using SoftwareTestingExample.Utilities;
 using SoftwareTestingExample.Pages;
 
 namespace SoftwareTestingExample.Tests;
@@ -20,21 +21,21 @@ public class HomePageTests : PageTest
     }
 
     [Test]
-        public async Task TC02_SearchBoxIsVisible()
+    public async Task TC02_SearchBoxIsVisible()
     {
         var homePage = new HomePage(Page);
 
         await homePage.NavigateAsync();
 
         Assert.That(
-        await homePage.IsSearchBoxVisibleAsync(),
-        Is.True,
-        "Search box should be visible on the homepage."
-);
+            await homePage.IsSearchBoxVisibleAsync(),
+            Is.True,
+            "Search box should be visible on the homepage."
+        );
     }
 
     [Test]
-        public async Task TC03_CategoriesMenuOpensSuccessfully()
+    public async Task TC03_CategoriesMenuOpensSuccessfully()
     {
         var homePage = new HomePage(Page);
 
@@ -43,10 +44,10 @@ public class HomePageTests : PageTest
         await homePage.OpenCategoriesMenuAsync();
 
         Assert.That(
-        await homePage.IsCategoriesMenuExpandedAsync(),
-        Is.True,
-        "Categories menu should expand after clicking."
-    );
+            await homePage.IsCategoriesMenuExpandedAsync(),
+            Is.True,
+            "Categories menu should expand after clicking."
+        );
     }
 
     [Test]
@@ -56,12 +57,13 @@ public class HomePageTests : PageTest
 
         await homePage.NavigateAsync();
 
-        var currentUrl = await homePage.GetCurrentUrlAsync();
+        var expectedUrl = new Uri(TestConfig.BaseUrl).AbsoluteUri;
+        var actualUrl = new Uri(await homePage.GetCurrentUrlAsync()).AbsoluteUri;
 
         Assert.That(
-            currentUrl,
-            Is.EqualTo("https://practicesoftwaretesting.com/"),
-            "Homepage URL should match the expected website address."
+            actualUrl,
+            Is.EqualTo(expectedUrl),
+            "Homepage URL should match the configured BASE_URL."
         );
     }
 
