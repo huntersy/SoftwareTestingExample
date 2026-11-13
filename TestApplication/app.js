@@ -2,6 +2,7 @@ const products = [
 {id:"pliers",name:"Pliers",price:"12.01",description:"General-purpose pliers for gripping, bending, and cutting.",eco:false},
 {id:"long-nose-pliers",name:"Long Nose Pliers",price:"14.50",description:"Long-reach pliers for precision work.",eco:true},
 {id:"combination-pliers",name:"Combination Pliers",price:"16.25",description:"Versatile combination pliers for workshop tasks.",eco:false},
+{id:"slip-joint-pliers",name:"Slip Joint Pliers",price:"13.75",description:"Adjustable slip-joint pliers for common repair tasks.",eco:true},
 {id:"claw-hammer",name:"Claw Hammer",price:"18.00",description:"A durable claw hammer for everyday use.",eco:false},
 {id:"thor-hammer",name:"Thor Hammer",price:"22.00",description:"A balanced hammer for demanding jobs.",eco:true},
 {id:"fiberglass-hammer",name:"Claw Hammer with Fiberglass Handle",price:"20.00",description:"A claw hammer with a shock-absorbing fiberglass handle.",eco:false},
