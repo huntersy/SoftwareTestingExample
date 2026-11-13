@@ -4,5 +4,5 @@ public static class TestConfig
 {
     public static string BaseUrl =>
         Environment.GetEnvironmentVariable("BASE_URL")
-        ?? "https://practicesoftwaretesting.com/";
+        ?? "http://127.0.0.1:4173/";
 }
