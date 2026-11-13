@@ -1,6 +1,9 @@
 name: Playwright NUnit CI
 
 on:
+  push:
+    branches:
+      - controlled-test-application
   workflow_dispatch:
 
 permissions:
