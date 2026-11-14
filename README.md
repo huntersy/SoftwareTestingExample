@@ -75,13 +75,22 @@ Keep the local server running while tests execute. Stop it with Ctrl+C.
 
 ## GitHub Actions
 
-The workflow at `.github/workflows/playwright.yml` is manually triggered through GitHub Actions. It restores and builds the .NET project, installs Chromium, starts the repository's demo application on the runner, runs the NUnit suite against that local URL, and uploads the TRX test report.
+The workflow at `.github/workflows/playwright.yml` runs automatically when changes are pushed to the `controlled-test-application` branch. It can also be started manually through GitHub Actions using `workflow_dispatch`.
+
+The workflow restores and builds the .NET project, installs Chromium, starts the repository's demo application on the runner, runs the NUnit suite against that local URL, and uploads the TRX test report.
 
 The workflow uses `BASE_URL=http://127.0.0.1:4173/` for the test step. No external application is contacted during the CI test run.
 
-## Current validation status
+## CI validation status
 
-The repository now contains the controlled test application and a CI workflow configured to serve it. The workflow must complete successfully before claiming that all 16 tests pass in GitHub Actions. A successful build alone is not equivalent to a successful test run.
+The GitHub Actions run for commit `462422c1e27d503562ba2126e0960afc56b6f012` completed successfully:
+
+- **Passed:** 16
+- **Failed:** 0
+- **Skipped:** 0
+- **Total:** 16
+
+[View the successful GitHub Actions run](https://github.com/huntersy/SoftwareTestingExample/actions/runs/43500482934).
 
 The development computer previously blocked the locally built test assembly through its Windows Application Control policy. This project does not require disabling Windows security controls. GitHub-hosted CI provides a separate environment for validating the test suite.
 
